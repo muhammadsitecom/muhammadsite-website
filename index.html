@@ -582,6 +582,12 @@ function globe(cv,scale,follow){
 globe($("globe"),.36,true);
 document.querySelectorAll(".g3").forEach(c=>globe(c,+c.dataset.s||.4,false));
 }
+
+/* align the name box top with the bottom of the hero buttons on wide screens */
+{const bd=document.querySelector(".badge"),bt=document.querySelector(".acts .b-line");let sh=0;
+const al=()=>{if(!bd||!bt)return;if(innerWidth<=820){sh=0;bd.style.transform="";return}
+ const base=bd.getBoundingClientRect().top-sh;sh=Math.round(bt.getBoundingClientRect().bottom-base);bd.style.transform="translateY("+sh+"px)"};
+addEventListener("resize",al);addEventListener("load",al);if(document.fonts)document.fonts.ready.then(al);al();setTimeout(al,1000);setTimeout(al,2500);}
 </script>
 </body>
 </html>
